@@ -2,18 +2,18 @@
 [Stage2] Operators: aten::add.out,aten::mul.out,aten::relu.out,aten::view_copy.out,aten::permute_copy.out,aten::conv2d.out,aten::linear.out,aten::sigmoid.out,aten::softmax.out
 [Stage2] Configuring selective portable ops build...
 [Stage2] Strategy: Manual operator list
--- ExecuTorch ARM toolchain not found, using system PATH
--- ExecuTorch ARM toolchain not found, using system PATH
--- The C compiler identification is GNU 13.3.1
--- The CXX compiler identification is GNU 13.3.1
+-- Found ARM toolchain in ExecuTorch path: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin
+-- Found ARM toolchain in ExecuTorch path: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin
+-- The C compiler identification is Clang 21.1.1
+-- The CXX compiler identification is Clang 21.1.1
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: /workspace/executorch/examples/arm/ethos-u-scratch/arm-gnu-toolchain-13.3.rel1-arm-none-eabi/bin/arm-none-eabi-gcc - skipped
+-- Check for working C compiler: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin/clang - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /workspace/executorch/examples/arm/ethos-u-scratch/arm-gnu-toolchain-13.3.rel1-arm-none-eabi/bin/arm-none-eabi-g++ - skipped
+-- Check for working CXX compiler: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin/clang++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- ccache not found, builds will not be cached
@@ -56,12 +56,8 @@ CMake Deprecation Warning at third-party/flatcc/CMakeLists.txt:2 (cmake_minimum_
 
 -- dist install dir /workspace/executorch/third-party/flatcc
 -- lib install dir /workspace/executorch/third-party/flatcc/lib
--- Setting GNU C compiler options with c11 and Posix
--- Disabling -pedantic for GCC >= 8.0
--- Disabling GNU C compiler warnings: -Wstringop-truncation -Wno-format-overflow
--- GCC_VERSION: 13.3.1
-
--- Configured C_FLAGS:  -DFLATCC_REFLECTION=0 -std=c11 -Wall -Wextra -Wno-stringop-truncation -Wno-format-overflow -Wno-misleading-indentation -DPORTABLE_POSIX_MEMALIGN=1 -Werror -Wno-unused-function -Wsign-conversion
+-- Setting Clang compiler options
+-- Configured C_FLAGS:  -DFLATCC_REFLECTION=0 -Wstrict-prototypes -Wsign-conversion -Wconversion -std=c11 -pedantic -Wall -Wextra -Werror
 CMake Deprecation Warning at backends/xnnpack/third-party/FXdiv/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
   Compatibility with CMake < 3.10 will be removed from a future version of
   CMake.

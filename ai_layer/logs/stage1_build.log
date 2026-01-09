@@ -1,16 +1,16 @@
 [Stage1] Configuring generic runtime build...
--- ExecuTorch ARM toolchain not found, using system PATH
--- ExecuTorch ARM toolchain not found, using system PATH
--- The C compiler identification is GNU 13.3.1
--- The CXX compiler identification is GNU 13.3.1
+-- Found ARM toolchain in ExecuTorch path: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin
+-- Found ARM toolchain in ExecuTorch path: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin
+-- The C compiler identification is Clang 21.1.1
+-- The CXX compiler identification is Clang 21.1.1
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: /workspace/executorch/examples/arm/ethos-u-scratch/arm-gnu-toolchain-13.3.rel1-arm-none-eabi/bin/arm-none-eabi-gcc - skipped
+-- Check for working C compiler: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin/clang - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /workspace/executorch/examples/arm/ethos-u-scratch/arm-gnu-toolchain-13.3.rel1-arm-none-eabi/bin/arm-none-eabi-g++ - skipped
+-- Check for working CXX compiler: /workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin/clang++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- ccache not found, builds will not be cached
@@ -53,12 +53,8 @@ CMake Deprecation Warning at third-party/flatcc/CMakeLists.txt:2 (cmake_minimum_
 
 -- dist install dir /workspace/executorch/third-party/flatcc
 -- lib install dir /workspace/executorch/third-party/flatcc/lib
--- Setting GNU C compiler options with c11 and Posix
--- Disabling -pedantic for GCC >= 8.0
--- Disabling GNU C compiler warnings: -Wstringop-truncation -Wno-format-overflow
--- GCC_VERSION: 13.3.1
-
--- Configured C_FLAGS:  -DFLATCC_REFLECTION=0 -std=c11 -Wall -Wextra -Wno-stringop-truncation -Wno-format-overflow -Wno-misleading-indentation -DPORTABLE_POSIX_MEMALIGN=1 -Werror -Wno-unused-function -Wsign-conversion
+-- Setting Clang compiler options
+-- Configured C_FLAGS:  -DFLATCC_REFLECTION=0 -Wstrict-prototypes -Wsign-conversion -Wconversion -std=c11 -pedantic -Wall -Wextra -Werror
 CMake Deprecation Warning at backends/xnnpack/third-party/FXdiv/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
   Compatibility with CMake < 3.10 will be removed from a future version of
   CMake.
@@ -135,10 +131,10 @@ Generated files /__w/CMSIS-Executorch/CMSIS-Executorch/out/stage1/kernels/quanti
 -- BUILD_TESTING                             : OFF
 -- CCACHE_PROGRAM                            : CCACHE_PROGRAM-NOTFOUND
 -- CMAKE_BUILD_TYPE                          : Release
--- CMAKE_CXX_COMPILER_ID                     : GNU
+-- CMAKE_CXX_COMPILER_ID                     : Clang
 -- CMAKE_CXX_STANDARD                        : 17
 -- CMAKE_SYSTEM_PROCESSOR                    : cortex-m55
--- CMAKE_TOOLCHAIN_FILE                      : /__w/CMSIS-Executorch/CMSIS-Executorch/model/arm-none-eabi-gcc.cmake
+-- CMAKE_TOOLCHAIN_FILE                      : /__w/CMSIS-Executorch/CMSIS-Executorch/model/clang.cmake
 -- EXECUTORCH_BUILD_ARM_BAREMETAL            : ON
 -- EXECUTORCH_BUILD_CADENCE                  : OFF
 -- EXECUTORCH_BUILD_COREML                   : OFF
@@ -199,11 +195,12 @@ Generated files /__w/CMSIS-Executorch/CMSIS-Executorch/out/stage1/kernels/quanti
 -- EXECUTORCH_XNNPACK_SHARED_WORKSPACE       : ON
 -- PYTHON_EXECUTABLE                         : python3
 -- --------------------------
--- Configuring done (2.3s)
+-- Configuring done (2.5s)
 -- Generating done (0.1s)
 CMake Warning:
   Manually-specified variables were not used by the project:
 
+    CMSIS_OPTIMIZATION_LEVEL
     FETCH_ETHOS_U_CONTENT
 
 
@@ -237,7 +234,7 @@ CMake Warning:
 -- Build files have been written to: /__w/CMSIS-Executorch/CMSIS-Executorch/out/stage1/third-party/flatc_ep/src/build
 [ 22%] Performing build step for 'flatbuffers_ep'
 [  2%] Building CXX object CMakeFiles/flatc.dir/src/idl_parser.cpp.o
-[  7%] Building CXX object CMakeFiles/flatc.dir/src/idl_gen_text.cpp.o
+[  5%] Building CXX object CMakeFiles/flatc.dir/src/idl_gen_text.cpp.o
 [  7%] Building CXX object CMakeFiles/flatc.dir/src/reflection.cpp.o
 [ 10%] Building CXX object CMakeFiles/flatc.dir/src/util.cpp.o
 [ 13%] Building CXX object CMakeFiles/flatc.dir/src/idl_gen_binary.cpp.o
@@ -342,10 +339,6 @@ Install the project...
 [ 77%] Building CXX object CMakeFiles/executorch_core.dir/runtime/platform/abort.cpp.obj
 [ 77%] Building CXX object CMakeFiles/executorch_core.dir/runtime/platform/log.cpp.obj
 [ 77%] Building CXX object CMakeFiles/executorch_core.dir/runtime/platform/platform.cpp.obj
-/workspace/executorch/runtime/executor/tensor_parser_exec_aten.cpp: In function 'executorch::runtime::Result<void*> executorch::runtime::deserialization::{anonymous}::getMemPlannedPtr(const executorch_flatbuffer::AllocationDetails*, size_t, executorch::runtime::HierarchicalAllocator*)':
-/workspace/executorch/runtime/executor/tensor_parser_exec_aten.cpp:66:62: warning: left shift count >= width of type [-Wshift-count-overflow]
-   66 |     memory_offset |= static_cast<size_t>(memory_offset_high) << 32;
-      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
 [ 88%] Building CXX object CMakeFiles/executorch_core.dir/runtime/platform/profiler.cpp.obj
 [ 88%] Building CXX object CMakeFiles/executorch_core.dir/runtime/platform/runtime.cpp.obj
 [ 88%] Building CXX object CMakeFiles/executorch_core.dir/schema/extended_header.cpp.obj
@@ -385,8 +378,8 @@ Install the project...
 [ 21%] Building CXX object kernels/portable/cpu/util/CMakeFiles/kernels_util_all_deps.dir/upsample_util.cpp.obj
 [ 21%] Linking CXX static library libkernels_util_all_deps.a
 [ 21%] Built target kernels_util_all_deps
-[ 22%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op__empty_dim_order.cpp.obj
 [ 22%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op__clone_dim_order.cpp.obj
+[ 22%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op__empty_dim_order.cpp.obj
 [ 22%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op__to_dim_order_copy.cpp.obj
 [ 22%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_abs.cpp.obj
 [ 24%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_acos.cpp.obj
@@ -460,8 +453,8 @@ Install the project...
 [ 51%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_linear_scratch_example.cpp.obj
 [ 53%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log.cpp.obj
 [ 53%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log10.cpp.obj
-[ 53%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log2.cpp.obj
 [ 53%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log1p.cpp.obj
+[ 53%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log2.cpp.obj
 [ 54%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_log_softmax.cpp.obj
 [ 54%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logical_and.cpp.obj
 [ 54%] Building CXX object kernels/portable/CMakeFiles/portable_kernels.dir/cpu/op_logical_not.cpp.obj
@@ -591,82 +584,232 @@ Install the project...
 [  6%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/BasicMathFunctions/arm_elementwise_add_s8.c.obj
 [  6%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/BasicMathFunctions/arm_elementwise_mul_s16.c.obj
 [ 10%] Built target common_schema
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 10%] Built target program_schema
 [ 13%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/BasicMathFunctions/arm_elementwise_mul_s16_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 13%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/BasicMathFunctions/arm_elementwise_mul_s8.c.obj
 [ 13%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConcatenationFunctions/arm_concatenation_s8_w.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 13%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConcatenationFunctions/arm_concatenation_s8_x.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 33%] Built target executorch_core
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 36%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConcatenationFunctions/arm_concatenation_s8_y.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 36%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConcatenationFunctions/arm_concatenation_s8_z.c.obj
 [ 36%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/FullyConnectedFunctions/arm_fully_connected_get_buffer_sizes_s8.c.obj
-[ 40%] Built target executorch
-[ 43%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/FullyConnectedFunctions/arm_fully_connected_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+[ 40%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/FullyConnectedFunctions/arm_fully_connected_s8.c.obj
+[ 43%] Built target executorch
 [ 43%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/FullyConnectedFunctions/arm_fully_connected_get_buffer_sizes_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 43%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/FullyConnectedFunctions/arm_fully_connected_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 43%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_1_x_n_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 46%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_1x1_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 46%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_1x1_s8_fast.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 46%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_get_buffer_sizes_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 46%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 50%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_wrapper_s8.c.obj
 [ 50%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_3x3_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 50%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_get_buffer_sizes_s8.c.obj
 [ 53%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 53%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_s8_opt.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+/__w/CMSIS-Executorch/CMSIS-Executorch/out/stage1/_deps/cmsis_nn-src/Source/ConvolutionFunctions/arm_depthwise_conv_s8.c:44:16: warning: unknown attribute 'optimize' ignored [-Wunknown-attributes]
+   44 | __attribute__((optimize("no-unroll-loops")))
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ 53%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_wrapper_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 53%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_nn_depthwise_conv_s8_core.c.obj
 [ 56%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_s8_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+1 warning generated.
 [ 56%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_nn_mat_mult_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 56%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_fast_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 56%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_get_buffer_sizes_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 60%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 60%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_convolve_wrapper_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 60%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_fast_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 63%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_get_buffer_sizes_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 63%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 63%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ConvolutionFunctions/arm_depthwise_conv_wrapper_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 63%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ActivationFunctions/arm_relu6_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 66%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ActivationFunctions/arm_nn_activation_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 66%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ActivationFunctions/arm_relu_q7.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 66%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ActivationFunctions/arm_relu_q15.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 66%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/PoolingFunctions/arm_avgpool_get_buffer_sizes_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 70%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/PoolingFunctions/arm_avgpool_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 70%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/PoolingFunctions/arm_max_pool_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 70%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/PoolingFunctions/arm_avgpool_get_buffer_sizes_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 73%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/PoolingFunctions/arm_avgpool_s16.c.obj
 [ 73%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/PoolingFunctions/arm_max_pool_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 73%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/SoftmaxFunctions/arm_nn_softmax_common_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 73%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/SoftmaxFunctions/arm_softmax_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 76%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/SoftmaxFunctions/arm_softmax_s8_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 76%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/SoftmaxFunctions/arm_softmax_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 76%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/SVDFunctions/arm_svdf_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 76%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/SVDFunctions/arm_svdf_state_s16_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 80%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/LSTMFunctions/arm_lstm_unidirectional_s8_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 80%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/ReshapeFunctions/arm_reshape_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 80%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_padded_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 83%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_s8.c.obj
 [ 83%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_lstm_calculate_gate_s8_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 83%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_lstm_step_s8_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 83%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_lstm_update_output_s8_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 86%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_mat_mul_core_1x_s8.c.obj
 [ 86%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_mat_mul_core_4x_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 86%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 86%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_vec_mat_mul_result_acc_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 90%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s8.c.obj
 [ 90%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_svdf_s8.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 90%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_s8_to_s16_unordered_with_offset.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 93%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 93%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_lstm_update_cell_state_s16.c.obj
 [ 93%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_mat_mul_kernel_s16.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 93%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s16.c.obj
-[ 96%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_q7_to_q15_with_offset.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 96%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_nntables.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
+[ 96%] Building C object _deps/cmsis_nn-build/CMakeFiles/cmsis-nn.dir/Source/NNSupportFunctions/arm_q7_to_q15_with_offset.c.obj
+clang: warning: argument '-Ofast' is deprecated; use '-O3 -ffast-math' for the same behavior, or '-O3' to enable only conforming optimizations [-Wdeprecated-ofast]
 [ 96%] Linking C static library libcmsis-nn.a
 [ 96%] Built target cmsis-nn
 [ 96%] Building CXX object backends/cortex_m/CMakeFiles/cortex_m_kernels.dir/ops/op_quantized_add.cpp.obj
 [ 96%] Building CXX object backends/cortex_m/CMakeFiles/cortex_m_kernels.dir/ops/op_quantize_per_tensor.cpp.obj
 [ 96%] Building CXX object backends/cortex_m/CMakeFiles/cortex_m_kernels.dir/ops/op_dequantize_per_tensor.cpp.obj
+In file included from /workspace/executorch/backends/cortex_m/ops/op_quantized_add.cpp:9:
+/workspace/executorch/backends/cortex_m/ops/cortex_m_ops_common.h:68:7: warning: format specifies type 'int' but the argument has type 'int64_t' (aka 'long long') [-Wformat]
+   66 |       "%s zero point must be in int8 range [Value: %d]",
+      |                                                    ~~
+      |                                                    %lld
+   67 |       param_name,
+   68 |       zp_val);
+      |       ^~~~~~
+/workspace/executorch/../executorch/runtime/platform/assert.h:39:59: note: expanded from macro 'ET_CHECK_MSG'
+   39 |       ET_ASSERT_MESSAGE_EMIT(" (%s): " _format, #_cond, ##__VA_ARGS__); \
+      |                                        ~~~~~~~            ^~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/assert.h:26:9: note: expanded from macro 'ET_ASSERT_MESSAGE_EMIT'
+   24 |       "In function %s(), assert failed" _format, \
+      |                                         ~~~~~~~
+   25 |       ET_FUNCTION,                               \
+   26 |       ##__VA_ARGS__)
+      |         ^~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/log.h:181:13: note: expanded from macro 'ET_LOG'
+  180 |           _format,                                                   \
+      |           ~~~~~~~
+  181 |           ##__VA_ARGS__);                                            \
+      |             ^~~~~~~~~~~
+In file included from /workspace/executorch/backends/cortex_m/ops/op_quantized_add.cpp:9:
+/workspace/executorch/backends/cortex_m/ops/cortex_m_ops_common.h:75:7: warning: format specifies type 'int' but the argument has type 'int64_t' (aka 'long long') [-Wformat]
+   73 |       "%s multiplier must be in int32 range [Value: %d]",
+      |                                                     ~~
+      |                                                     %lld
+   74 |       param_name,
+   75 |       mult_val);
+      |       ^~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/assert.h:39:59: note: expanded from macro 'ET_CHECK_MSG'
+   39 |       ET_ASSERT_MESSAGE_EMIT(" (%s): " _format, #_cond, ##__VA_ARGS__); \
+      |                                        ~~~~~~~            ^~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/assert.h:26:9: note: expanded from macro 'ET_ASSERT_MESSAGE_EMIT'
+   24 |       "In function %s(), assert failed" _format, \
+      |                                         ~~~~~~~
+   25 |       ET_FUNCTION,                               \
+   26 |       ##__VA_ARGS__)
+      |         ^~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/log.h:181:13: note: expanded from macro 'ET_LOG'
+  180 |           _format,                                                   \
+      |           ~~~~~~~
+  181 |           ##__VA_ARGS__);                                            \
+      |             ^~~~~~~~~~~
+In file included from /workspace/executorch/backends/cortex_m/ops/op_quantized_add.cpp:9:
+/workspace/executorch/backends/cortex_m/ops/cortex_m_ops_common.h:81:7: warning: format specifies type 'int' but the argument has type 'int64_t' (aka 'long long') [-Wformat]
+   79 |       "%s shift must be in range [-31, 31] [Value: %d]",
+      |                                                    ~~
+      |                                                    %lld
+   80 |       param_name,
+   81 |       shift_val);
+      |       ^~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/assert.h:39:59: note: expanded from macro 'ET_CHECK_MSG'
+   39 |       ET_ASSERT_MESSAGE_EMIT(" (%s): " _format, #_cond, ##__VA_ARGS__); \
+      |                                        ~~~~~~~            ^~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/assert.h:26:9: note: expanded from macro 'ET_ASSERT_MESSAGE_EMIT'
+   24 |       "In function %s(), assert failed" _format, \
+      |                                         ~~~~~~~
+   25 |       ET_FUNCTION,                               \
+   26 |       ##__VA_ARGS__)
+      |         ^~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/log.h:181:13: note: expanded from macro 'ET_LOG'
+  180 |           _format,                                                   \
+      |           ~~~~~~~
+  181 |           ##__VA_ARGS__);                                            \
+      |             ^~~~~~~~~~~
+/workspace/executorch/backends/cortex_m/ops/op_quantized_add.cpp:141:60: warning: format specifies type 'size_t' (aka 'unsigned int') but the argument has type 'const ArrayRef<SizesType>' (aka 'const ArrayRef<int>') [-Wformat]
+  141 |   ET_LOG(Info, "quantized_add: input1_int8.sizes() = %zu", input1_int8.sizes());
+      |                                                      ~~~   ^~~~~~~~~~~~~~~~~~~
+/workspace/executorch/../executorch/runtime/platform/log.h:181:13: note: expanded from macro 'ET_LOG'
+  180 |           _format,                                                   \
+      |           ~~~~~~~
+  181 |           ##__VA_ARGS__);                                            \
+      |             ^~~~~~~~~~~
+4 warnings generated.
 [100%] Linking CXX static library libcortex_m_kernels.a
 [100%] Built target cortex_m_kernels
 [  6%] Built target flatbuffers_ep

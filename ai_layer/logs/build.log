@@ -3,14 +3,14 @@
 Generating comprehensive AI layer build report...
 ✅ Comprehensive report written to /__w/CMSIS-Executorch/CMSIS-Executorch/ai_layer/REPORT.md
 📊 Found 9 libraries and 1 model assets
-2026-01-07 11:54:43 [SUCCESS] Completed: Generate report
-2026-01-07 11:54:43 [INFO] Build summary:
+2026-01-09 14:19:57 [SUCCESS] Completed: Generate report
+2026-01-09 14:19:57 [INFO] Build summary:
 # ExecuTorch AI Layer Build Report
 
-**Generated:** 2026-01-07T11:54:43Z
-**Git Commit:** a22580074a50 on main
+**Generated:** 2026-01-09T14:19:57Z
+**Git Commit:** 3acc4bde2386 on clang-atfe-support
 **Repository Status:** 🔄 Modified
-**Last Commit:** 2025-12-17 13:12:52 +0100
+**Last Commit:** 2026-01-09 15:13:58 +0100
 
 ## 📊 Build Summary
 
@@ -21,31 +21,31 @@ Generating comprehensive AI layer build report...
 
 ## 📚 Library Assets
 
-**Total Size:** 9.9 MiB
+**Total Size:** 6.3 MiB
 
 | Library | Size | Percentage | Modified | Hash |
 |---------|------|------------|----------|------|
-| libcortex_m_kernels.a | 20.0 KiB | 0.2% | 2026-01-07 11:54:39 | `bb9e866d521b610b` |
-| libcortex_m_ops_lib.a | 12.7 KiB | 0.1% | 2026-01-07 11:54:39 | `2d775a146e807c89` |
-| libexecutorch.a | 51.9 KiB | 0.5% | 2026-01-07 11:54:39 | `cb7487408c706df3` |
-| libexecutorch_core.a | 216.5 KiB | 2.1% | 2026-01-07 11:54:39 | `86197fc7d7e8799a` |
-| libexecutorch_delegate_ethos_u.a | 18.6 KiB | 0.2% | 2026-01-07 11:54:39 | `156c3b78c9ea508a` |
-| libportable_kernels.a | 9.1 MiB | 92.3% | 2026-01-07 11:54:39 | `64da4e2aee250d89` |
-| libportable_ops_lib.a | 199.2 KiB | 2.0% | 2026-01-07 11:54:39 | `753a28361e0f0496` |
-| libquantized_kernels.a | 238.6 KiB | 2.4% | 2026-01-07 11:54:39 | `e561be49a8d5f4ef` |
-| libquantized_ops_lib.a | 28.7 KiB | 0.3% | 2026-01-07 11:54:39 | `f67b4b2a6c2f0b23` |
+| libcortex_m_kernels.a | 20.5 KiB | 0.3% | 2026-01-09 14:19:54 | `d08dbc3410bfde66` |
+| libcortex_m_ops_lib.a | 14.5 KiB | 0.2% | 2026-01-09 14:19:54 | `85dc022cccda918d` |
+| libexecutorch.a | 55.5 KiB | 0.9% | 2026-01-09 14:19:54 | `b9c6b207a1b6d790` |
+| libexecutorch_core.a | 220.9 KiB | 3.4% | 2026-01-09 14:19:54 | `30dc9fde768d1242` |
+| libexecutorch_delegate_ethos_u.a | 18.0 KiB | 0.3% | 2026-01-09 14:19:54 | `dfe8caf59ea5309a` |
+| libportable_kernels.a | 5.6 MiB | 87.8% | 2026-01-09 14:19:54 | `6dca6d68a1c38d58` |
+| libportable_ops_lib.a | 208.9 KiB | 3.2% | 2026-01-09 14:19:54 | `d655c65a58f3f28b` |
+| libquantized_kernels.a | 228.6 KiB | 3.5% | 2026-01-09 14:19:54 | `27fe8cea80dbe7d9` |
+| libquantized_ops_lib.a | 27.9 KiB | 0.4% | 2026-01-09 14:19:54 | `b1580e13c1f457f5` |
 
 ## 🤖 Model Assets
 
 | Asset | Type | Size | Modified | Hash |
 |-------|------|------|----------|------|
-| ethos_u_minimal_example.pte | Model | 3.7 KiB | 2026-01-07 11:54:42 | `64b1c8be310fada7` |
+| ethos_u_minimal_example.pte | Model | 3.7 KiB | 2026-01-09 14:19:56 | `64b1c8be310fada7` |
 
 ## ⚙️ Build Configuration
 
 ### CMake Configuration
 - **Build Type:** `Release`
-- **Toolchain File:** `/__w/CMSIS-Executorch/CMSIS-Executorch/model/arm-none-eabi-gcc.cmake`
+- **Toolchain File:** `/__w/CMSIS-Executorch/CMSIS-Executorch/model/clang.cmake`
 - **ARM Baremetal:** `ON`
 - **Cortex-M Support:** `ON`
 - **Portable Ops:** `ON`
@@ -55,5 +55,5 @@ Generating comprehensive AI layer build report...
 
 **Count:** 9 operators
 
-2026-01-07 11:54:43 [SUCCESS] Build completed successfully!
+2026-01-09 14:19:57 [SUCCESS] Build completed successfully!
 📋 Build logs saved to: ai_layer/logs/
