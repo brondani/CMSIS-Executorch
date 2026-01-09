@@ -97,7 +97,7 @@ jobs:
         echo "$(date '+%Y-%m-%d %H:%M:%S') [INFO] Starting: Stage1 build" | tee -a $MAIN_LOG
         $GITHUB_WORKSPACE/scripts/build_stage1.sh /workspace/executorch \
                                $GITHUB_WORKSPACE/out/stage1  \
-                               $GITHUB_WORKSPACE/model/arm-none-eabi-gcc.cmake 2>&1 | tee $LOG_DIR/stage1_build.log $MAIN_LOG
+                               $GITHUB_WORKSPACE/model/clang.cmake 2>&1 | tee $LOG_DIR/stage1_build.log $MAIN_LOG
         echo "$(date '+%Y-%m-%d %H:%M:%S') [SUCCESS] Completed: Stage1 build" | tee -a $MAIN_LOG
 
     - name: Build ExecuTorch Selective Kernel Libraries
@@ -107,7 +107,7 @@ jobs:
                                /workspace/executorch \
                                "" \
                                $GITHUB_WORKSPACE/out/stage2 \
-                               $GITHUB_WORKSPACE/model/arm-none-eabi-gcc.cmake \
+                               $GITHUB_WORKSPACE/model/clang.cmake \
                                $GITHUB_WORKSPACE/model/operators_minimal.txt 2>&1 | tee $LOG_DIR/stage2_build.log $MAIN_LOG
         echo "$(date '+%Y-%m-%d %H:%M:%S') [SUCCESS] Completed: Stage2 build" | tee -a $MAIN_LOG
 

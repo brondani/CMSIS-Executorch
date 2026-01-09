@@ -70,6 +70,7 @@ CMAKE_ARGS=(
   -DBUILD_TESTING=OFF
   -DFETCH_ETHOS_U_CONTENT=OFF
   -DEXECUTORCH_SELECT_OPS_MODEL=  # empty => full schema based libs
+  -DCMSIS_OPTIMIZATION_LEVEL=O3 # default -Ofast is deprecated for clang
 )
 
 if [[ -n "${TOOLCHAIN_FILE}" ]]; then

@@ -71,7 +71,7 @@ RUN git clone https://github.com/pytorch/executorch.git && \
     git submodule update --init --recursive
 
 RUN python -m venv executorch-venv
-ENV PATH="/workspace/executorch/examples/arm/ethos-u-scratch/arm-gnu-toolchain-13.3.rel1-arm-none-eabi/bin:/workspace/executorch-venv/bin:$PATH"
+ENV PATH="/workspace/executorch/examples/arm/ethos-u-scratch/ATfE-21.1.1/bin:/workspace/executorch/examples/arm/ethos-u-scratch/arm-gnu-toolchain-13.3.rel1-arm-none-eabi/bin:/workspace/executorch-venv/bin:$PATH"
 
 # Use ExecuTorch's official installation script but avoid ATen bridge conflicts
 RUN pip install --extra-index-url https://download.pytorch.org/whl/test/cpu --break-system-packages \
@@ -95,6 +95,14 @@ RUN cd examples/arm/ethos-u-scratch && \
     else \
         echo "Toolchain already has neutral name or not found"; \
     fi
+
+# Download & extract CLANG 21.1.1 (ATfE) along side the arm-gnu-toolchain installation
+RUN curl -fsSL \
+    https://github.com/arm/arm-toolchain/releases/download/release-21.1.1-ATfE/ATfE-21.1.1-Linux-x86_64.tar.xz \
+    -o /tmp/ATfE-21.1.1-Linux-x86_64.tar.xz
+RUN mkdir -p examples/arm/ethos-u-scratch/ATfE-21.1.1 \
+    && tar -xJf /tmp/ATfE-21.1.1-Linux-x86_64.tar.xz --strip-components=1 -C examples/arm/ethos-u-scratch/ATfE-21.1.1 \
+    && rm /tmp/ATfE-21.1.1-Linux-x86_64.tar.xz
 
 # Test if ARM setup worked correctly
 RUN if [ -f "examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake" ]; then \
